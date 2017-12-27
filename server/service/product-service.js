@@ -65,6 +65,30 @@ let products = [
     },
 ];
 
+
+class Comment {
+    constructor( id, productId, timestamp, user, rating, content ){
+        this.id = id;
+        this.productId = productId;
+        this.timestamp = timestamp;
+        this.user = user;
+        this.rating = rating;
+        this.content = content;
+    }
+}
+
+let comments = [
+    new Comment(1, 1, new Date(), '张三1', 3, '东西不错1'),
+    new Comment(2, 1, new Date(), '张三1', 3.5, '东西不错1'),
+    new Comment(3, 1, new Date(), '张三1', 5, '东西不错1'),
+    new Comment(4, 2, new Date(), '张三2', 4, '东西不错2'),
+    new Comment(5, 2, new Date(), '张三2', 4, '东西不错2'),
+    new Comment(6, 3, new Date(), '张三3', 3, '东西不错3'),
+    new Comment(7, 3, new Date(), '张三3', 3, '东西不错3'),
+    new Comment(8, 4, new Date(), '张三4', 2, '东西不错4'),
+    new Comment(9, 5, new Date(), '张三5', 1, '东西不错5'),
+];
+
 module.exports = {
     getProducts () {
         return products;
@@ -73,5 +97,27 @@ module.exports = {
         return products.find(p => {
             return p.id == id;
         })
+    },
+    getAllProductCategories () {
+        let _set = new Set();
+        products.every((p) => {
+            p.categories.every((c) => {
+                _set.add(c);
+                return true;
+            });
+            return true;
+        });
+        return Array.from(_set);
+    },
+
+    getProductComment (productId) {
+        let _productId = +productId;
+        return comments.filter((c) => {
+            return c.productId === _productId
+        });
+    },
+    addProductComment (comment) {
+        comments.unshift(comment);
+        return true;
     }
 };

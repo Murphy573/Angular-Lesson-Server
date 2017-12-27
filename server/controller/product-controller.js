@@ -8,8 +8,20 @@ router.get('/getProducts', function (req, res) {
     res.json(productService.getProducts());
 });
 
-router.get('/getProductById/:id', function (req, res) {
-    res.json(productService.getProductByID(req.params['id']));
+router.post('/getProductById', function (req, res) {
+    res.json(productService.getProductByID(req.body['id']));
+});
+
+router.get('/getAllProductCategories', function (req, res) {
+    res.json(productService.getAllProductCategories());
+});
+
+router.get('/getProductComment/:id', function (req, res) {
+    res.json(productService.getProductComment(req.params['id']));
+});
+
+router.post('/addProductComment', function (req, res) {
+    res.send(productService.addProductComment(req.body));
 });
 
 module.exports =  router;

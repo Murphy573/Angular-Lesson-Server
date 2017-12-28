@@ -10,7 +10,7 @@ const dispacher = require('./server/dispather');
 //form-data数据需要：multer（multipart/form-data）
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(projectRoot, express.static(path.resolve(__dirname, './webapp'), {
+app.use('/', express.static(path.resolve(__dirname, './webapp'), {
     index: './index.html'
 }));
 

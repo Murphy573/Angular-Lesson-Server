@@ -5,7 +5,7 @@ router = express.Router();
 const productService = require('../service/product-service');
 
 router.get('/getProducts', function (req, res) {
-    res.json(productService.getProducts());
+    res.json(productService.getProducts(req.query));
 });
 
 router.post('/getProductById', function (req, res) {
